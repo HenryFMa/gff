@@ -381,14 +381,18 @@
   <!-- Initializations -->
   <script type="text/javascript">
 
+      var huntingsObj;
+
       function loadHuntings(jsonObj){
+
+          huntingsObj = jsonObj;
 
           var huntings;
           var position;
 
-          if(jsonObj.gallery_52.huntings){
+          if(huntingsObj.gallery_52.huntings){
 
-              huntings = jsonObj.gallery_52.huntings;
+              huntings = huntingsObj.gallery_52.huntings;
               position = $("#gallery-52");
 
               var hunting, huntingElem, huntingsRowElem;
@@ -421,8 +425,8 @@
                                   "</div>" +
                               "</div>" +
                               "<div>" +
-                                  "<a target='_blank' onclick='like(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
-                                    "<i class='fas fa-heart red-text ml-2'><strong id='hunting_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
+                                  "<a target='_blank' onclick='like_52(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
+                                    "<i class='fas fa-heart red-text ml-2'><strong id='hunting_52_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
                                   "</a>" +
                               "</div>" +
                           "</div>" +
@@ -432,9 +436,9 @@
               }
           }
 
-          if(jsonObj.gallery_cn.huntings){
+          if(huntingsObj.gallery_cn.huntings){
 
-              huntings = jsonObj.gallery_cn.huntings;
+              huntings = huntingsObj.gallery_cn.huntings;
               position = $("#gallery-cn");
 
               var hunting, huntingElem, huntingsRowElem;
@@ -454,8 +458,8 @@
                   huntingElem = $("<div class='col-md-4 mb-1'>" +
                           "<div class='card'>" +
                             "<div class='card-header'>" +
-                              "<a target='_blank' onclick='like(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
-                              "<i class='fas fa-heart red-text ml-2'><strong id='hunting_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
+                              "<a target='_blank' onclick='like_cn(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
+                              "<i class='fas fa-heart red-text ml-2'><strong id='hunting_cn_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
                             "</a>" +
                           "</div>" +
                           "<div class='view overlay zoom z-depth-1-half'>" +
@@ -467,6 +471,7 @@
                               "</div>" +
                             "</div>" +
                           "</div>" +
+                          "<div class='mb-3'></div>" +
                           "</div>" +
                           "</div>");
 
@@ -477,15 +482,25 @@
           return;
       }
 
-      function like(huntingID) {
-          if(huntingID && huntingsObj.huntings) {
-              huntingsObj.huntings.find(function (e) {
+      function like_52(huntingID) {
+          if(huntingID && huntingsObj) {
+              huntingsObj.gallery_52.huntings.find(function (e) {
                   if(e.id == huntingID) {
                       e.likes.number++;
 
-                      $("#hunting_likes_number_" + huntingID).text(e.likes.number);
+                      $("#hunting_52_likes_number_" + huntingID).text(e.likes.number);
+                  }
+              });
+          }
+      }
 
-                      //alert("Thank you for the like! Now it's :" + e.likes.number + " :)");
+      function like_cn(huntingID) {
+          if(huntingID && huntingsObj) {
+              huntingsObj.gallery_cn.huntings.find(function (e) {
+                  if(e.id == huntingID) {
+                      e.likes.number++;
+
+                      $("#hunting_cn_likes_number_" + huntingID).text(e.likes.number);
                   }
               });
           }

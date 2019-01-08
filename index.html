@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en">
 
 <head>
@@ -110,7 +111,7 @@
 
           <!--Video source-->
           <video class="video-intro" autoplay loop muted>
-            <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" >
+            <source src="img/video/Tropical.mp4" type="video/mp4" >
           </video>
 
           <!-- Mask & flexbox options-->
@@ -149,7 +150,7 @@
 
           <!--Video source-->
           <video class="video-intro" autoplay loop muted>
-              <source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4">
+              <source src="img/video/forest.mp4" type="video/mp4">
           </video>
 
           <!-- Mask & flexbox options-->
@@ -188,7 +189,7 @@
 
           <!--Video source-->
           <video class="video-intro" autoplay loop muted>
-              <source src="https://mdbootstrap.com/img/video/city.mp4" type="video/mp4">
+              <source src="img/video/city.mp4" type="video/mp4">
           </video>
 
           <!-- Mask & flexbox options-->
@@ -381,6 +382,9 @@
   <!-- Initializations -->
   <script type="text/javascript">
 
+      //let serviceURL = "https://gff-json-server.herokuapp.com";
+      var serviceURL = "http://localhost:3000/huntings";
+
       var huntingsObj;
 
       function loadHuntings(jsonObj){
@@ -388,121 +392,142 @@
           huntingsObj = jsonObj;
 
           var huntings;
-          var position;
+          //var position;
 
-          if(huntingsObj.gallery_52.huntings){
+          if(huntingsObj){
 
-              huntings = huntingsObj.gallery_52.huntings;
-              position = $("#gallery-52");
+              //huntings = huntingsObj;
+              //position = $("#gallery-52");
 
               var hunting, huntingElem, huntingsRowElem;
 
-              var totalHuntings = huntings.length;
+              var totalHuntings = huntingsObj.length;
+
+              var counter_52=0, counter_cn=0;
 
               for(var i=0; i < totalHuntings; i++) {
 
-                  if(i%3 == 0){
-                      huntingsRowElem = $("<div class='row mb-3'></div>");
+                  hunting = huntingsObj[i];
 
-                      position.append(huntingsRowElem);
-                  }
+                  if(hunting.category == "gallery_52"){
+                      if(counter_52%3 == 0){
+                          huntingsRowElem = $("<div class='row mb-3'></div>");
 
-                  hunting = huntings[i];
+                          $("#gallery-52").append(huntingsRowElem);
+                      }
 
-                  huntingElem = $("<div class='col-md-4 mb-1'>" +
-                          "<div class='card'>" +
+                      huntingElem = $("<div class='col-md-4 mb-1'>" +
+                              "<div class='card'>" +
                               "<div class='card-header'>" +
-                                "<h3 class='mb-1'><strong>Week " + hunting.id + "</strong>" +
-                                "</h3>" +
+                              "<h3 class='mb-1'><strong>Week " + hunting.id + "</strong>" +
+                              "</h3>" +
                               "</div>" +
                               "<div class='view overlay zoom z-depth-1-half'>" +
-                                  "<img src='" + hunting.img + "' class='img-fluid'>" +
-                                  "<div class='mask rgba-black-light d-flex justify-content-center align-items-center'>" +
-                                      "<div class='text-center white-text mx-5 wow fadeIn'>" +
-                                          "<p><strong>Best Free Material Design for Bootstrap.</strong></p>" +
-                                          "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalYT' onclick='setModelSrc(&quot;iframeYT&quot;, &quot;" + hunting.video + "&quot;)'>TL;DR</button>" +
-                                      "</div>" +
-                                  "</div>" +
-                              "</div>" +
-                              "<div>" +
-                                  "<a target='_blank' onclick='like_52(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
-                                    "<i class='fas fa-heart red-text ml-2'><strong id='hunting_52_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
-                                  "</a>" +
-                              "</div>" +
-                          "</div>" +
-                          "</div>");
-
-                  huntingsRowElem.append(huntingElem);
-              }
-          }
-
-          if(huntingsObj.gallery_cn.huntings){
-
-              huntings = huntingsObj.gallery_cn.huntings;
-              position = $("#gallery-cn");
-
-              var hunting, huntingElem, huntingsRowElem;
-
-              var totalHuntings = huntings.length;
-
-              for(var i=0; i < totalHuntings; i++) {
-
-                  if(i%3 == 0){
-                      huntingsRowElem = $("<div class='row mb-3'></div>");
-
-                      position.append(huntingsRowElem);
-                  }
-
-                  hunting = huntings[i];
-
-                  huntingElem = $("<div class='col-md-4 mb-1'>" +
-                          "<div class='card'>" +
-                            "<div class='card-header'>" +
-                              "<a target='_blank' onclick='like_cn(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
-                              "<i class='fas fa-heart red-text ml-2'><strong id='hunting_cn_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
-                            "</a>" +
-                          "</div>" +
-                          "<div class='view overlay zoom z-depth-1-half'>" +
-                            "<img src='" + hunting.img + "' class='img-fluid'>" +
-                            "<div class='mask rgba-black-light d-flex justify-content-center align-items-center'>" +
+                              "<img src='" + hunting.img + "' class='img-fluid'>" +
+                              "<div class='mask rgba-black-light d-flex justify-content-center align-items-center'>" +
                               "<div class='text-center white-text mx-5 wow fadeIn'>" +
                               "<p><strong>Best Free Material Design for Bootstrap.</strong></p>" +
                               "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalYT' onclick='setModelSrc(&quot;iframeYT&quot;, &quot;" + hunting.video + "&quot;)'>TL;DR</button>" +
                               "</div>" +
-                            "</div>" +
-                          "</div>" +
-                          "<div class='mb-3'></div>" +
-                          "</div>" +
-                          "</div>");
+                              "</div>" +
+                              "</div>" +
+                              "<div>" +
+                              "<a target='_blank' onclick='like_52(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
+                              "<i class='fas fa-heart red-text ml-2'><strong id='gallery_52_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
+                              "</a>" +
+                              "</div>" +
+                              "</div>" +
+                              "</div>");
 
-                  huntingsRowElem.append(huntingElem);
+                      huntingsRowElem.append(huntingElem);
+
+                      counter_52++;
+                  }
+
+                  if(hunting.category == "gallery_cn"){
+
+                      if(counter_cn%3 == 0){
+                          huntingsRowElem = $("<div class='row mb-3'></div>");
+
+                          $("#gallery-cn").append(huntingsRowElem);
+                      }
+
+                      hunting = huntingsObj[i];
+
+                      huntingElem = $("<div class='col-md-4 mb-1'>" +
+                              "<div class='card'>" +
+                              "<div class='card-header'>" +
+                              "<a target='_blank' onclick='like_cn(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
+                              "<i class='fas fa-heart red-text ml-2'><strong id='gallery_cn_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
+                              "</a>" +
+                              "</div>" +
+                              "<div class='view overlay zoom z-depth-1-half'>" +
+                              "<img src='" + hunting.img + "' class='img-fluid'>" +
+                              "<div class='mask rgba-black-light d-flex justify-content-center align-items-center'>" +
+                              "<div class='text-center white-text mx-5 wow fadeIn'>" +
+                              "<p><strong>Best Free Material Design for Bootstrap.</strong></p>" +
+                              "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalYT' onclick='setModelSrc(&quot;iframeYT&quot;, &quot;" + hunting.video + "&quot;)'>TL;DR</button>" +
+                              "</div>" +
+                              "</div>" +
+                              "</div>" +
+                              "<div class='mb-3'></div>" +
+                              "</div>" +
+                              "</div>");
+
+                      huntingsRowElem.append(huntingElem);
+
+                      counter_cn++;
+                  }
               }
           }
 
           return;
       }
 
-      function like_52(huntingID) {
-          if(huntingID && huntingsObj) {
-              huntingsObj.gallery_52.huntings.find(function (e) {
-                  if(e.id == huntingID) {
-                      e.likes.number++;
+      function refreshLikes(jsonObj) {
+          $("#" + jsonObj.category + "_likes_number_" + jsonObj.id).text(jsonObj.likes.number);
+      }
 
-                      $("#hunting_52_likes_number_" + huntingID).text(e.likes.number);
+      function updateLikes(url, jsonObj) {
+          if(url && jsonObj) {
+
+              fetch(url, {
+                  method: 'PATCH',
+                  body: JSON.stringify({
+                      id: jsonObj.id,
+                      category: jsonObj.category,
+                      likes: {
+                          number: jsonObj.likes.number + 1
+                      }
+                  }),
+                  headers: {
+                      "Content-type": "application/json; charset=UTF-8"
                   }
-              });
+              }).then(response => response.json())
+          .then(json => refreshLikes(json));
+          }
+
+      }
+
+      function like(category, huntingID) {
+          if(category && huntingID) {
+
+              fetch(serviceURL + "/" + huntingID)
+                      .then(response => response.json())
+              .then(json => updateLikes(serviceURL + "/" + huntingID, json));
+
+          }
+      }
+
+      function like_52(huntingID) {
+          if(huntingID) {
+              like("gallery_52", huntingID);
           }
       }
 
       function like_cn(huntingID) {
-          if(huntingID && huntingsObj) {
-              huntingsObj.gallery_cn.huntings.find(function (e) {
-                  if(e.id == huntingID) {
-                      e.likes.number++;
-
-                      $("#hunting_cn_likes_number_" + huntingID).text(e.likes.number);
-                  }
-              });
+          if(huntingID) {
+              like("gallery_cn", huntingID);
           }
       }
 
@@ -510,7 +535,7 @@
           document.getElementById(id).setAttribute('src', src);
       }
 
-      fetch('https://my-json-server.typicode.com/henryfma/gff/db')
+      fetch(serviceURL)
               .then(response => response.json())
       .then(json => loadHuntings(json));
 

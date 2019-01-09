@@ -382,21 +382,14 @@
   <!-- Initializations -->
   <script type="text/javascript">
 
-      var serviceURL = "https://gff-json-server.herokuapp.com/huntings"
+      //var serviceURL = "http://localhost:3000/huntings";
+      var serviceURL = "https://gff-json-server.herokuapp.com/huntings";
 
-      var huntingsObj;
-
-      function loadHuntings(jsonObj){
-
-          huntingsObj = jsonObj;
+      function loadHuntings(huntingsObj){
 
           var huntings;
-          //var position;
 
           if(huntingsObj){
-
-              //huntings = huntingsObj;
-              //position = $("#gallery-52");
 
               var hunting, huntingElem, huntingsRowElem;
 
@@ -431,7 +424,7 @@
                               "</div>" +
                               "</div>" +
                               "<div>" +
-                              "<a target='_blank' onclick='like_52(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
+                              "<a target='_blank' onclick='like(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
                               "<i class='fas fa-heart red-text ml-2'><strong id='gallery_52_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
                               "</a>" +
                               "</div>" +
@@ -456,7 +449,7 @@
                       huntingElem = $("<div class='col-md-4 mb-1'>" +
                               "<div class='card'>" +
                               "<div class='card-header'>" +
-                              "<a target='_blank' onclick='like_cn(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
+                              "<a target='_blank' onclick='like(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
                               "<i class='fas fa-heart red-text ml-2'><strong id='gallery_cn_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
                               "</a>" +
                               "</div>" +
@@ -487,47 +480,23 @@
           $("#" + jsonObj.category + "_likes_number_" + jsonObj.id).text(jsonObj.likes.number);
       }
 
-      function updateLikes(url, jsonObj) {
-          if(url && jsonObj) {
+      function like(huntingID) {
 
-              fetch(url, {
+          if(huntingID) {
+
+              fetch(serviceURL + "/" + huntingID, {
                   method: 'PATCH',
                   body: JSON.stringify({
-                      id: jsonObj.id,
-                      category: jsonObj.category,
-                      likes: {
-                          number: jsonObj.likes.number + 1
-                      }
+                      like: huntingID
                   }),
                   headers: {
                       "Content-type": "application/json; charset=UTF-8"
                   }
               }).then(response => response.json())
           .then(json => refreshLikes(json));
-          }
-
-      }
-
-      function like(category, huntingID) {
-          if(category && huntingID) {
-
-              fetch(serviceURL + "/" + huntingID)
-                      .then(response => response.json())
-              .then(json => updateLikes(serviceURL + "/" + huntingID, json));
 
           }
-      }
 
-      function like_52(huntingID) {
-          if(huntingID) {
-              like("gallery_52", huntingID);
-          }
-      }
-
-      function like_cn(huntingID) {
-          if(huntingID) {
-              like("gallery_cn", huntingID);
-          }
       }
 
       function setModelSrc(id, src) {

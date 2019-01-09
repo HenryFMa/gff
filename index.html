@@ -92,13 +92,13 @@
   <!--Modal: modalYT-->
 
   <!--Carousel Wrapper-->
-  <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+  <div id="carousel-gff-1z" class="carousel slide carousel-fade" data-ride="carousel">
 
     <!--Indicators-->
     <ol class="carousel-indicators">
-      <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-      <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+      <li data-target="#carousel-gff-1z" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-gff-1z" data-slide-to="1"></li>
+      <li data-target="#carousel-gff-1z" data-slide-to="2"></li>
     </ol>
     <!--/.Indicators-->
 
@@ -124,16 +124,21 @@
               </h2>
 
               <p>
-                <strong>In a World of Fuzzy Business, Go F<i class="fas fa-heart fa-sm red-text"></i>cking Free!!! No Trick!!!</strong>
+                <p>
+                  <h5><strong>Fuzzy Business World!!! Go F<i class="fas fa-heart fa-sm red-text"></i>cking Free!!! No Trick!!!</strong></h5>
+                </p>
+                <p>
+                  <h6>High Innate Value | Low Attached Cost(ads, spams, …) | No Comparison Sh<i class="fas fa-heart fa-sm red-text"></i>t</h6>
+                </p>
               </p>
 
-              <p class="mb-4 d-none d-md-block">
-                <strong>High Innate Value | Low Attached Cost(ads, signup, membership, …) | No Comparison Sh<i class="fas fa-heart fa-sm red-text"></i>t</strong>
-              </p>
+              <br>
 
-              <a target="_blank" href="" class="btn btn-outline-white btn-md">TL;DR
-                <i class="fas fa-graduation-cap ml-2"></i>
-              </a>
+              <p>
+                <a href="#" class="btn btn-outline-white btn-md">TL;DR
+                   <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
+              </p>
             </div>
             <!-- Content -->
 
@@ -163,16 +168,19 @@
               </h2>
 
               <p>
-                <strong>You know, there is no why.</strong>
+                <p>
+                <h5><strong>You know, there is no why.</strong></h5>
+                </p>
+                <p>
+                <h6>Just Do It</h6>
+                </p>
               </p>
 
-              <p class="mb-4 d-none d-md-block">
-                <strong>Just Do It</strong>
+              <p>
+                <a href="#" class="btn btn-outline-white btn-md">TL;DR
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
               </p>
-
-              <a target="_blank" href="" class="btn btn-outline-white btn-md">TL;DR
-                <i class="fas fa-graduation-cap ml-2"></i>
-              </a>
             </div>
             <!-- Content -->
 
@@ -202,16 +210,19 @@
               </h2>
 
               <p>
-                <strong>Does anyone really know how to hunt for the best free stuff???</strong>
+                <p>
+                <h5><strong>Does anyone really know how to hunt for the best free stuff???</strong></h5>
+                </p>
+                <p>
+                <h6>I don't now. Hence '52 weeks 52 huntings' and see :)</h6>
+                </p>
               </p>
 
-              <p class="mb-4 d-none d-md-block">
-                <strong>I don't now. I'll go with '52 weeks 52 huntings' and see :)</strong>
+              <p>
+                <a href="#" class="btn btn-outline-white btn-md">TL;DR
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
               </p>
-
-              <a target="_blank" href="" class="btn btn-outline-white btn-md">TL;DR
-                <i class="fas fa-graduation-cap ml-2"></i>
-              </a>
             </div>
             <!-- Content -->
 
@@ -226,11 +237,11 @@
     <!--/.Slides-->
 
     <!--Controls-->
-    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#carousel-gff-1z" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#carousel-gff-1z" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
@@ -350,13 +361,14 @@
         <i class="fab fa-pinterest mr-3"></i>
       </a>
 
+      <a href="http://codepen.io/freehunter-gff/" target="_blank">
+        <i class="fab fa-codepen mr-3"></i>
+      </a>
+
       <a href="https://github.com/freehunter-gff" target="_blank">
         <i class="fab fa-github mr-3"></i>
       </a>
 
-      <a href="http://codepen.io/freehunter-gff/" target="_blank">
-        <i class="fab fa-codepen mr-3"></i>
-      </a>
     </div>
     <!-- Social icons -->
 
@@ -418,7 +430,7 @@
                               "<img src='" + hunting.img + "' class='img-fluid'>" +
                               "<div class='mask rgba-black-light d-flex justify-content-center align-items-center'>" +
                               "<div class='text-center white-text mx-5 wow fadeIn'>" +
-                              "<p><strong>Best Free Material Design for Bootstrap.</strong></p>" +
+                              "<p><strong><a class='white-text' target='_blank' href='" + hunting.hyperlink + "'>" + hunting.title + "</a></strong></p>" +
                               "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalYT' onclick='setModelSrc(&quot;iframeYT&quot;, &quot;" + hunting.video + "&quot;)'>TL;DR</button>" +
                               "</div>" +
                               "</div>" +
@@ -457,7 +469,7 @@
                               "<img src='" + hunting.img + "' class='img-fluid'>" +
                               "<div class='mask rgba-black-light d-flex justify-content-center align-items-center'>" +
                               "<div class='text-center white-text mx-5 wow fadeIn'>" +
-                              "<p><strong>Best Free Material Design for Bootstrap.</strong></p>" +
+                              "<p><strong><a class='white-text' target='_blank' href='" + hunting.hyperlink + "'>" + hunting.title + "</a></strong></p>" +
                               "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalYT' onclick='setModelSrc(&quot;iframeYT&quot;, &quot;" + hunting.video + "&quot;)'>TL;DR</button>" +
                               "</div>" +
                               "</div>" +

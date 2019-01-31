@@ -409,7 +409,7 @@
                               "</div>" +
                               "</div>" +
                               "<div>" +
-                              "<a target='_blank' onclick='like(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
+                              "<a id='gallery_52_like_" + hunting.id + "' onclick='like(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
                               "<i class='fas fa-heart red-text ml-2'><strong id='gallery_52_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
                               "</a>" +
                               "</div>" +
@@ -434,12 +434,12 @@
                       huntingElem = $("<div class='col-md-4 mb-1'>" +
                               "<div class='card'>" +
                               "<div class='card-header'>" +
-                              "<a target='_blank' onclick='like(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
+                              "<a id='gallery_cn_like_" + hunting.id + "' onclick='like(" + hunting.id + ")' class='btn btn-outline-deep-orange btn-sm'>GFF++" +
                               "<i class='fas fa-heart red-text ml-2'><strong id='gallery_cn_likes_number_" + hunting.id + "' class='black-text'>" + hunting.likes.number + "</strong></i>" +
                               "</a>" +
                               "</div>" +
                               "<div class='view overlay zoom z-depth-1-half'>" +
-                              "<img src='" + hunting.img + "' class='img-fluid'>" +
+                              "<img src='https://cdn.jsdelivr.net/gh/HenryFMa/shared@master/assets/images/coming-soon-launch.jpg' class='img-fluid'>" +
                               "<div class='mask rgba-black-light d-flex justify-content-center align-items-center'>" +
                               "<div class='text-center white-text mx-5 wow fadeIn'>" +
                               "<p><strong><a class='white-text' target='_blank' href='" + hunting.hyperlink + "'>" + hunting.title + "</a></strong></p>" +
@@ -462,6 +462,12 @@
       }
 
       function refreshLikes(jsonObj) {
+          var likeElem = $("#" + jsonObj.category + "_like_" +  + jsonObj.id);
+
+          if(likeElem) {
+              likeElem.attr("class", likeElem.attr("class") + " disabled");
+          }
+
           $("#" + jsonObj.category + "_likes_number_" + jsonObj.id).text(jsonObj.likes.number);
       }
 
